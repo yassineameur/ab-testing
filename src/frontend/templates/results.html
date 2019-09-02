@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for result in results %}
+
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="">{{ result.kpi_name}}</a>
+                <br>
+              {% if result.pvalue > 0.10 %}
+                <span style="color:red">Pvalue = {{ result.pvalue }}</span>
+              {% elif result.pvalue > 0.05 %}
+                <span style="color:grey">Pvalue = {{ result.pvalue }}</span>
+              {% else %}
+                <span style="color:green">Pvalue = {{ result.pvalue }}</span>
+              {% endif %}
+                <br>
+              <small class="text-muted"> {{ result.first_population_name }} = {{ result.first_population_avg }}</small> <br>
+              <small class="text-muted"> {{ result.second_population_name }} = {{ result.second_population_avg }}</small><br>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+    {% endfor %}
+
+{% endblock content%}
+

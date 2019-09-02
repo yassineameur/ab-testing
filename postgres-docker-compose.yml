@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+
+  postgres:
+    image: mdillon/postgis:9.5
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD:
+      POSTGRES_DB: datalake
+    ports:
+      - 5432:5432

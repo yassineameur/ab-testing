@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for user in users %}
+    <article class="media content-section">
+              <div class="media-body">
+                <div class="article-metadata">
+                  <a class="mr-2">{{ user.email }}</a>
+                  <small class="text-muted">{{ user.role }}</small>
+                    {% if user.status == "Confirmed" %}
+                    <span style="background-color:green; color:white; width:20"> {{ user.status }} </span>
+                    {% else %}
+                    <a class="btn btn-outline-success btn-xs" href=" {{url_for('confirm_user', user_id=user.id)}}"> Confirm</a>
+                  {% endif %}
+
+                     <a class="mr-2" style="color:red;margin-left:10px" href="{{ url_for('delete_user', user_id=user.id) }}"> Delete </a>
+                </div>
+
+              </div>
+
+    </article>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="deleteModalLabel">Delete Test?</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button"  data-dismiss="modal">Close</button>
+                      <form action="{{ url_for('delete_test', test_id=user.id) }}" method="POST">
+                        <input type="submit" value="Delete">
+                      </form>
+                    </div>
+                  </div>
+                </div>
+    </div>
+
+    {% endfor %}
+
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            Reset password ?<a class="ml-2" href="{{url_for('reset_password')}}"> Go </a>
+        </small>
+    </div>
+
+{% endblock content%}
+
