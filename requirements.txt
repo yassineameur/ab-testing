@@ -30,7 +30,7 @@ pandas==0.24.2
 pipenv==2018.11.26
 pluggy==0.11.0
 psycopg2-binary==2.8.2
-py==1.8.0
+py==1.10.0
 pycparser==2.19
 pylint==2.3.1
 pytest==4.5.0
